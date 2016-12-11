@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>Cam-Directory</title>
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <link rel='stylesheet' href='css/index.css' type='text/css' media='only screen and (max-width: 1024px)' />
+
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+		function goBack(){
+                window.close();
+                window.location = "index.html";
+            };
+		</script>
+    </head>
+    
+    <body style="background-color: #f4f4f4;">  
+        <div id="container">
+        <div id="header">
+        <table border="0" width="100%">
+            <tr>
+                <td align="center" width="10%"><a href="#" onclick="goBack();"><img src="img/backTrsp.png" height="30" width="30"></a></td>
+				<td align="center" width="80%"><h3>Camera-Directory</h3></td>
+                <td align="center" width="10%">&nbsp;</td>
+            </tr>
+		</table>
+        </div>
+            
+        <div id="headerImg">
+		<table border="0" width="100%">
+            <tr>
+                <td><img src="img/service.jpg" width="100%" height="80"></td>  
+            </tr>
+        </table>
+        </div>
+            
+        <div id="fagLogo">
+            <table border="0" width="100%">            
+                <tr>
+                    <td style="text-align: right; padding-right: 5px;"><img src="img/feragLogo.png" width="237" height="42"></td>
+                </tr>
+            </table>
+        </div>
+            
+        <div id="hmiCamDir">
+		<table border="0" width="100%">
+            <tr>
+                <td align="center"><iframe id="camDir" src="http://10.5.5.9:8080" width="100%" height="450" frameborder="0" scrolling="no"></iframe></td>
+            </tr>
+		</table>  
+        </div>
+        </div>
+    </body>
+</html>

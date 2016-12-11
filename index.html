@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>Ferag Supervision App</title>
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <link rel='stylesheet' href='css/index.css' type='text/css' media='only screen and (max-width: 1024px)' />
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+        
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<script src="heropro.js"></script>
+		<script src="background.js"></script>	
+        <script type="application/javascript" src="js/fastclick.js"></script>
+		
+		<script type="text/javascript">
+		function newRefresh(){
+			location.reload();
+		};
+   
+		function listCamDir(){
+           window.location = "camDirectory.html";
+            console.log("Cam directory");
+		};
+            
+        function broadcast(){
+           window.location = "live.html";
+            console.log("Cam directory");
+		};
+            
+        function message(){
+        var buttons = document.getElementsByTagName("button");
+            var buttonsCount = buttons.length;
+            for (var i = 0; i <= buttonsCount; i += 1) {
+                buttons[i].onclick = function(e) {
+                    var msg = (this.id);
+                    
+                    if (msg == "onOn") {
+                        command('bacpac','PW','%01');
+                        document.getElementById("status").innerHTML = "Camera ON";
+                        } else if (msg == "onOff") {
+                        command('bacpac','PW','%00');
+                        document.getElementById("status").innerHTML = "Camera OFF"; 
+                        } else if (msg == "recordtrigger") {
+                        command('bacpac','SH','%01');    
+                        document.getElementById("status").innerHTML = "Start Recording"; 
+                        } else if (msg == "stoptrigger") {
+                        command('bacpac','SH','%00');    
+                        document.getElementById("status").innerHTML = "Stop Recording";  
+                        } else if (msg == "copy") {
+                        listCamDir();    
+                        document.getElementById("status").innerHTML = "Copy Video";  
+                        } else if (msg == "broad") {
+                        broadcast();    
+                        document.getElementById("status").innerHTML = "Broadcast Video";
+                        }
+                    }
+                }
+            };
+		</script>
+    </head>
+    
+    <body>
+        <div id="container">
+        <script type="text/javascript">
+        /* Retrieve password */
+        window.onload = function() {
+            getStrPw();
+            message();
+        };
+        
+        /* Prepare live streaming */
+        function liveStream(){
+            window.location.href = "live.html";
+        };
+        
+        /* Instantiate FastClick on the body */
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        };
+        </script>
+        
+        <div id="header">
+            <table border="0" width="100%">
+                <tr>
+                    <td align="center" width="10%"><a href="#" onclick="newRefresh();"><img src="img/hamburger.png" height="30" width="30"></a></td>
+                    <td align="center" width="80%"><h3>Supervision App</h3></td>
+                    <td align="center" width="10%"><a href="settings.html"><img src="img/settings.png" height="35" width="35"></a></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="headerImg">
+            <table border="0" width="100%">
+                <tr>
+                    <td><img src="img/service.jpg" width="100%" height="80"></td>  
+                </tr>
+            </table>
+        </div>
+        
+        <div id="fagLogo">
+            <table border="0" width="100%">            
+                <tr>
+                    <td style="text-align: right; padding-right: 5px;"><img src="img/feragLogo.png" width="237" height="42"></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="hmi">
+            <table border="0" width="100%">
+                <tr>
+                     <td height="25" align="center"><input required="required" placeholder="Password" id="wifiPassword"
+                        type="password" class="password" input autocomplete="on" value="hw_ferag" hidden/> 
+                    </td>  
+                </tr>
+                <tr>
+                    <td height="50" align="center">
+                        <button id="onOn" onclick="#">ON</button>&nbsp;&nbsp;
+                        <button id="onOff" onclick="#">OFF</button>
+                    </td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="recordtrigger"  onclick="#">Start Recording</button></td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="stoptrigger" onclick="#">Stop Recording</button></td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="copy" onclick="#">Copy Video</button></td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="broad" onclick="#">Broadcast Video</button></td>
+                </tr> 
+                <tr>
+                    <td align="center" height="25">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="statusFrm">
+            <table border="0" width="100%">
+                <tr>
+                    <td align="center"><label id="status">WiFi Connected to camera failed!</label></td>
+                </tr>        
+            </table>
+        </div>    
+            
+        <div id="footer">
+            <table border="0" width="100%">
+                <tr>
+                    <td width="33%">&nbsp;</td>
+                    <td width="33%" align="center"><img src="img/wrh.gif" width="35" height="35"></td>
+                    <td style="padding-right: 5px; text-align: right;">
+                        Ferag AG<br />Z&uuml;richstrasse 74<br />
+                        CH-8340 Hinwil/Z&uuml;rich<br />
+                        Tel. +41 (0)44 938 6000<br />
+                        Fax. +41 (0)44 938 6060<br />
+                        E-Mail:&nbsp;<a href="mailto:info@ferag.com">info@ferag.com</a><br />
+                        Web:&nbsp;<a href="http://www.ferag.com">www.ferag.com</a>
+                    </td>			
+                </tr>
+            </table>            
+        </div>
+            
+        <script src="js/localStorage.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+            
+        </div>
+    </body>
+</html>

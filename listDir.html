@@ -1,0 +1,39 @@
+<!-- http://10.5.5.9:8080/videos/DCIM/999GOPRO/GOPR0304.MP4 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript">
+        $(window).load(function(){
+           var fileExt = ".html";
+
+                $(document).ready(function(){
+
+                    $.ajax({
+                        //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+                        url: 'html/',
+                        success: function (data) {
+                            console.log(data);
+                           $("#fileNames").html('<ul>');
+                           //List all xml file names in the page
+
+                            // var filename = this.href.replace(window.location, "").replace("http://10.5.5.9:8080/", "");
+                            // $("#fileNames").append( '<li>'+filename+'</li>');
+
+                            $(data).find("a:contains(" + fileExt + ")").each(function () {
+                                $("#fileNames").append( '<li>'+$(this).text()+'</li>');
+                            });
+                            $("#fileNames").append('</ul>');
+                        }
+                    });
+
+                });
+        });
+        
+        </script>
+    </head>
+    
+    <body>
+        <!-- <div id="goproversion"><iframe src="http://10.5.5.9:8080/videos/MISC/version.txt" width="100%" height="100%"></iframe></div> -->
+    </body>
+</html>

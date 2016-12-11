@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>Settings</title>
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <link rel='stylesheet' href='css/index.css' type='text/css' media='only screen and (max-width: 1024px)' />
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+        
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<script src="heropro.js"></script>
+		<script src="background.js"></script>
+        <script src="js/localStorage.js"></script>
+        
+		<script type="text/javascript">
+		function goBack(){
+                window.close();
+                window.location = "index.html";
+            };
+		</script>
+    </head>
+    
+    <body> 
+        <div id="container">
+        <script type="text/javascript">
+        /* Retrieve password */
+        window.onload = function() {
+            getStrPw();
+            message();
+        };
+        
+        function message(){
+        var buttons = document.getElementsByTagName("button");
+            var buttonsCount = buttons.length;
+            for (var i = 0; i <= buttonsCount; i += 1) {
+                buttons[i].onclick = function(e) {
+                    var msg = (this.id);
+                    
+                    if (msg == "video") {
+                        command('camera','CM','%00');
+                        document.getElementById("status").innerHTML = "Video Mode";
+                        } else if (msg == "photo") {
+                        command('camera','CM','%01');    
+                        document.getElementById("status").innerHTML = "Photo Mode"; 
+                        } else if (msg == "burst") {
+                        command('camera','CM','%02');    
+                        document.getElementById("status").innerHTML = "Burst Mode"; 
+                        } else if (msg == "time") {
+                        command('camera','CM','%03');    
+                        document.getElementById("status").innerHTML = "Timelapse Mode";  
+                        } else if (msg == "delFile") {
+                        command('camera','DL','');    
+                        document.getElementById("status").innerHTML = "Delete Last File";  
+                        } else if (msg == "delAll") {
+                        command('camera','DA','');    
+                        document.getElementById("status").innerHTML = "Delete All Files";
+                        }
+                    }
+                }
+            };
+        </script>
+        
+        <div id="header">
+            <table border="0" width="100%">
+                <tr>
+                    <td align="center" width="10%"><a href="#" onclick="goBack();"><img src="img/back.png" height="35" width="35"></a></td>
+                    <td align="center" width="80%"><h3>Settings</h3></td>
+                    <td align="center" width="10%"><a href="help.html"><img src="img/help.png" height="35" width="35"></a></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="headerImg">
+            <table border="0" width="100%">
+                <tr>
+                    <td><img src="img/service.jpg" width="100%" height="80"></td>  
+                </tr>
+            </table>
+        </div>
+            
+        <div id="fagLogo">
+            <table border="0" width="100%">            
+                <tr>
+                    <td style="text-align: right; padding-right: 5px;"><img src="img/feragLogo.png" width="237" height="42"></td>
+                </tr>
+            </table>
+        </div>
+            
+        <div id="hmiSettings">
+            <table border="0" width="100%">
+                <tr>
+                    <td align="center">&nbsp;</td>  
+                </tr>
+                <tr>
+                     <td height="60" align="center"><input required="required" placeholder="Password" id="wifiPassword"
+                        type="password" class="password" input autocomplete="on" value="hw_ferag" />&nbsp;&nbsp;<button onclick="savePw();" id="buttonGo">Set</button> 
+                    </td>  
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="video" onclick="#">Video</button></td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="photo" onclick="#">Photo</button></td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="burst" onclick="#">Burst</button></td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="time" onclick="#">Timelapse</button></td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="delFile" onclick="#">Delete Last File</button></td>   
+                </tr>
+                <tr>
+                    <td height="50" align="center"><button id="delAll" onclick="#">Delete All File</button></td>   
+                </tr>
+                <tr>
+                    <td height="55" align="center">&nbsp;</td>  
+                </tr>
+            </table>
+        </div>
+        
+        <div id="statusSet">
+            <table border="0" width="100%">
+                <tr>
+                    <td align="center"><label id="status">WiFi Connected to (cam_ferag_01)</label></td>
+                </tr>
+            </table>
+        </div>
+        </div>
+    </body>
+</html>
